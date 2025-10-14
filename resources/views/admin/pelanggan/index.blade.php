@@ -46,7 +46,7 @@
     <nav class="navbar navbar-dark navbar-theme-primary px-4 col-12 d-lg-none">
         <a class="navbar-brand me-lg-5" href="../../index.html">
             <img class="navbar-brand-dark" src="{{ asset('assets-admin/img/brand/light.svg') }}" alt="Volt logo" /> <img
-                class="navbar-brand-light" src="{{ asset('') }}assets-admin/img/brand/dark.svg" alt="Volt logo" />
+                class="navbar-brand-light" src="{{ asset('assets-admin/img/brand/dark.svg') }}" alt="Volt logo" />
         </a>
         <div class="d-flex align-items-center">
             <button class="navbar-toggler d-lg-none collapsed" type="button" data-bs-toggle="collapse"
@@ -114,9 +114,9 @@
                         <span class="sidebar-text">Dashboard</span>
                     </a>
                 </li>
-
+                <!-- Tambahkan blok kode ini -->
                 <li class="nav-item  active ">
-                    <a href="{{ route('pelanggan.store') }}" class="nav-link">
+                    <a href="" class="nav-link">
                         <span class="sidebar-icon">
                             <svg class="icon icon-xs me-2" data-slot="icon" fill="none" stroke-width="1.5"
                                 stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
@@ -344,85 +344,60 @@
                             </svg>
                         </a>
                     </li>
-                    <li class="breadcrumb-item"><a href="{{ route('pelanggan.store') }}">Pelanggan</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Tambah Pelanggan</li>
+                    <li class="breadcrumb-item"><a href="#">Pelanggan</a></li>
                 </ol>
             </nav>
             <div class="d-flex justify-content-between w-100 flex-wrap">
                 <div class="mb-3 mb-lg-0">
-                    <h1 class="h4">Tambah Pelanggan</h1>
-                    <p class="mb-0">Form untuk menambahkan data pelanggan baru.</p>
+                    <h1 class="h4">Data Pelanggan</h1>
+                    <p class="mb-0">List data seluruh pelanggan</p>
                 </div>
                 <div>
-                    <a href="{{ route('dashboard') }}" class="btn btn-primary"><i class="far fa-question-circle me-1"></i> Kembali</a>
+                    <a href="{{ route('pelanggan.create')}}" class="btn btn-success text-white"><i
+                            class="far fa-question-circle me-1"></i> Tambah Pelanggan</a>
                 </div>
             </div>
         </div>
 
         <div class="row">
             <div class="col-12 mb-4">
-                <div class="card border-0 shadow components-section">
+                <div class="card border-0 shadow mb-4">
                     <div class="card-body">
-                        <form action="{{ route('pelanggan.store') }}" method="POST">
-                            @csrf
-                            <div class="row mb-4">
-                                <div class="col-lg-4 col-sm-6">
-                                    <!-- First Name -->
-                                    <div class="mb-3">
-                                        <label for="first_name" class="form-label">First name</label>
-                                        <input type="text" id="first_name" name="first_name" class="form-control" value="{{old('first_name')}}">
-                                    </div>
+                        <div class="table-responsive">
+                            <table id="table-pelanggan" class="table table-centered table-nowrap mb-0 rounded">
+                                <thead class="thead-light">
+                                    @if (session('success'))
+                                        <div class="alert alert-info">
+                                            {!! session('success') !!}
+                                        </div>
+                                    @endif
 
-                                    <!-- Last Name -->
-                                    <div class="mb-3">
-                                        <label for="last_name" class="form-label">Last name</label>
-                                        <input type="text" id="last_name" name="last_name" class="form-control"  value="{{old('last_name')}}">
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-4 col-sm-6">
-                                    <!-- Birthday -->
-                                    <div class="mb-3">
-                                        <label for="birthday" class="form-label">Birthday</label>
-                                        <input type="date" id="birthday" name="birthday" class="form-control" value="{{old('birthday')}}">
-                                    </div>
-
-                                    <!-- Gender -->
-                                    <div class="mb-3">
-                                        <label for="gender" class="form-label">Gender</label>
-                                        <select id="gender" name="gender" class="form-select" name="gender" value="{{old('gender')}}">
-                                            <option value="">-- Pilih --</option>
-                                            <option value="Male">Male</option>
-                                            <option value="Female">Female</option>
-                                            <option value="Other">Other</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-4 col-sm-12">
-                                    <!-- Email -->
-                                    <div class="mb-3">
-                                        <label for="email" class="form-label">Email</label>
-                                        <input type="text" id="email" class="form-control" name="email" value="{{old('email')}}">
-                                    </div>
-
-                                    <!-- Phone -->
-                                    <div class="mb-3">
-                                        <label for="phone" class="form-label">Phone</label>
-                                        <input type="text" id="phone" class="form-control" name="phone" value="{{old('phone')}}">
-                                    </div>
-
-                                    <!-- Buttons -->
-                                    <div class="">
-                                        <button type="submit" class="btn btn-primary">Simpan</button>
-                                        <a href="{{ route('pelanggan.index') }}"
-                                            class="btn btn-outline-secondary ms-2">Batal</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
+                                    <tr>
+                                        <th class="border-0">First Name</th>
+                                        <th class="border-0">Last Name</th>
+                                        <th class="border-0">Birthday</th>
+                                        <th class="border-0">Gender</th>
+                                        <th class="border-0">Email</th>
+                                        <th class="border-0">Phone</th>
+                                        <th class="border-0 rounded-end">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($dataPelanggan as $item)
+                                        <tr>
+                                            <td>{{ $item->first_name }}</td>
+                                            <td>{{ $item->last_name }}</td>
+                                            <td>{{ $item->birthday }}</td>
+                                            <td>{{ $item->gender }}</td>
+                                            <td>{{ $item->email }}</td>
+                                            <td>{{ $item->phone }}</td>
+                                            <td>Tombol Edit & Tombol Hapus</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-
                 </div>
             </div>
         </div>
