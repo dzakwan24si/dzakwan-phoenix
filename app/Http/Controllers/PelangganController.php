@@ -13,7 +13,9 @@ class PelangganController extends Controller
     {
         $filterableColumns = ['gender'];
 
-        $pageData['dataPelanggan'] = Pelanggan::filter($request, $filterableColumns)->paginate(10)->withQueryString();
+        $searchableColumns = ['first_name', 'last_name', 'email', 'phone'];
+
+        $pageData['dataPelanggan'] = Pelanggan::filter($request, $filterableColumns)->search($request, $searchableColumns)->paginate(10)->withQueryString();
         return view('admin.pelanggan.index', $pageData);
     }
 
