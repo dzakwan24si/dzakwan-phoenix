@@ -9,10 +9,12 @@ class PelangganController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data['dataPelanggan'] = Pelanggan::paginate(10);
-        return view('admin.pelanggan.index', $data);
+        $filterableColumns = ['gender'];
+
+        $pageData['dataPelanggan'] = Pelanggan::filter($request, $filterableColumns)->paginate(10)->withQueryString();
+        return view('admin.pelanggan.index', $pageData);
     }
 
     /**
@@ -63,18 +65,18 @@ class PelangganController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $pelanggan_id = $id;
+        $pelanggan_id  = $id;
         $dataPelanggan = Pelanggan::findOrFail($pelanggan_id);
 
         $dataPelanggan->first_name = $request->first_name;
-        $dataPelanggan->last_name = $request->last_name;
-        $dataPelanggan->birthday = $request->birthday;
-        $dataPelanggan->gender = $request->gender;
-        $dataPelanggan->email = $request->email;
-        $dataPelanggan->phone = $request->phone;
+        $dataPelanggan->last_name  = $request->last_name;
+        $dataPelanggan->birthday   = $request->birthday;
+        $dataPelanggan->gender     = $request->gender;
+        $dataPelanggan->email      = $request->email;
+        $dataPelanggan->phone      = $request->phone;
 
         $dataPelanggan->save();
-        return redirect()->route('pelanggan.index')->with('success','Data Berhasil Diupdate!');
+        return redirect()->route('pelanggan.index')->with('success', 'Data Berhasil Diupdate!');
     }
 
     /**
@@ -85,6 +87,6 @@ class PelangganController extends Controller
         $pelanggan = Pelanggan::findOrFail($id);
 
         $pelanggan->delete();
-        return redirect()->route('pelanggan.index')->with('success','Data Berhasil Dihapus!');
+        return redirect()->route('pelanggan.index')->with('success', 'Data Berhasil Dihapus!');
     }
 }
