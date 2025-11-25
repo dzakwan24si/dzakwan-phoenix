@@ -9,6 +9,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\MatakuliahController;
+use App\Http\Controllers\MultipleuploadsController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -46,3 +47,6 @@ Route::get('dashboard', [DashboardController::class, 'index'])
 Route::resource('pelanggan', PelangganController::class);
 
 Route::resource('user', UserController::class);
+
+Route::post('/upload/store', [MultipleuploadsController::class, 'store'])->name('upload.store');
+Route::delete('/upload/destroy/{id}', [MultipleuploadsController::class, 'destroy'])->name('upload.destroy');
