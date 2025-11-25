@@ -41,7 +41,7 @@
             <div class="col-12 mb-4">
                 <div class="card border-0 shadow components-section">
                     <div class="card-body">
-                        <form action="{{ route('user.update', $dataUser->id) }}" method="POST">
+                       <form action="{{ route('user.update', $dataUser->user_id) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <div class="row mb-4">
@@ -71,6 +71,20 @@
                                         <label for="password" class="form-label">Password Confirmation</label>
                                         <input type="text" id="password" class="form-control" name ="password"
                                             value="{{ $dataUser->password }}">
+                                    </div>
+
+                                    <!-- Profile Picture -->
+                                    <div class="mb-3">
+                                        <label for="profile_picture" class="form-label">Profile Picture</label>
+
+                                        @if($dataUser->profile_picture)
+                                            <div class="mb-2">
+                                                <img src="{{ Storage::url($dataUser->profile_picture) }}" alt="Current Photo" width="100" class="img-thumbnail">
+                                            </div>
+                                        @endif
+
+                                        <input type="file" id="profile_picture" class="form-control" name="profile_picture">
+                                        <small class="text-muted">Biarkan kosong jika tidak ingin mengganti foto.</small>
                                     </div>
 
                                     <!-- Buttons -->

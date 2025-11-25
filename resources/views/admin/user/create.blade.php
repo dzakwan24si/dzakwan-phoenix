@@ -53,7 +53,7 @@
                                 {!! session('info') !!}
                             </div>
                         @endif
-                    <form action="{{ route('user.store') }}" method="POST">
+                    <form action="{{ route('user.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="row mb-4">
                             <div class="col-lg-4 col-sm-6">
@@ -62,6 +62,12 @@
                                     <label for="name" class="form-label">Name</label>
                                     <input type="text" id="name" name="name" class="form-control"
                                         value="{{ old('name') }}">
+                                </div>
+                                
+                                <!--Profile Picture -->
+                                <div class="mb-3">
+                                <label for="profile_picture" class="form-label">Profile Picture</label>
+                                <input type="file" id="profile_picture" class="form-control" name="profile_picture">
                                 </div>
 
                                 <!-- Email -->
