@@ -41,7 +41,7 @@
             <div class="col-12 mb-4">
                 <div class="card border-0 shadow components-section">
                     <div class="card-body">
-                       <form action="{{ route('user.update', $dataUser->user_id) }}" method="POST" enctype="multipart/form-data">
+                       <form action="{{ route('user.update', $dataUser->id) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             <div class="row mb-4">
@@ -57,6 +57,18 @@
                                         <label for="email" class="form-label">Email</label>
                                         <input type="text" id="email" class="form-control" required
                                             name ="email" value="{{ $dataUser->email }}">
+                                    </div>
+
+                                    <!--Role -->
+                                <div class="mb-3">
+                                        <label for="role" class="form-label">Role</label>
+                                        <select id="role" name="role" class="form-select" name="role"
+                                            value="{{ old('role') }}">
+                                            <option value="">-- Pilih --</option>
+                                            <option value="Admin">Admin</option>
+                                            <option value="Pelanggan">Pelanggan</option>
+                                            <option value="Mitra">Mitra</option>
+                                        </select>
                                     </div>
 
                                     <!-- Password -->

@@ -22,6 +22,7 @@
                     </div>
                     <!-- Navbar links -->
                     <ul class="navbar-nav align-items-center">
+                        @if (Auth::check())
                         <li class="nav-item dropdown">
                             <a class="nav-link text-dark notification-bell unread dropdown-toggle"
                                 data-unread-notifications="true" href="#" role="button"
@@ -123,7 +124,7 @@
                                     <img class="avatar rounded-circle" alt="Image placeholder"
                                         src="{{ asset('assets-admin/img/team/profile-picture-3.jpg') }}">
                                     <div class="media-body ms-2 text-dark align-items-center d-none d-lg-block">
-                                        <span class="mb-0 font-small fw-bold text-gray-900">Bonnie Green</span>
+                                        <span class="mb-0 font-small fw-bold text-gray-900">{{Auth::user()->name}}</span>
                                     </div>
                                 </div>
                             </a>
@@ -135,7 +136,7 @@
                                             d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z"
                                             clip-rule="evenodd"></path>
                                     </svg>
-                                    My Profile
+                                    {{session('last_login')}}
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <svg class="dropdown-icon text-gray-400 me-2" fill="currentColor"
@@ -147,7 +148,7 @@
                                     Settings
                                 </a>
                                 <div role="separator" class="dropdown-divider my-1"></div>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                <a class="dropdown-item d-flex align-items-center" href="{{route('auth.logout')}}">
                                     <svg class="dropdown-icon text-danger me-2" fill="none" stroke="currentColor"
                                         viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -158,6 +159,9 @@
                                 </a>
                             </div>
                         </li>
+                        @else
+                        <a href="{{ route('auth') }}" class="btn btn-primary">Login</a>
+                        @endif
                     </ul>
                 </div>
             </div>

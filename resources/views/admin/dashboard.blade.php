@@ -226,7 +226,7 @@
 											</div>
 											<div class="col-auto ms--2">
 												<h4 class="h6 mb-0">
-													<a href="#">Chris Wood</a>
+													<a href="#">Joko Widodo</a>
 												</h4>
 												<div class="d-flex align-items-center">
 													<div class="bg-success dot rounded-circle me-1"></div>
@@ -258,7 +258,7 @@
 											</div>
 											<div class="col-auto ms--2">
 												<h4 class="h6 mb-0">
-													<a href="#">Jose Leos</a>
+													<a href="#">Prabowo Subianto</a>
 												</h4>
 												<div class="d-flex align-items-center">
 													<div class="bg-warning dot rounded-circle me-1"></div>
@@ -290,7 +290,7 @@
 											</div>
 											<div class="col-auto ms--2">
 												<h4 class="h6 mb-0">
-													<a href="#">Bonnie Green</a>
+													<a href="#">Puan Maharani</a>
 												</h4>
 												<div class="d-flex align-items-center">
 													<div class="bg-danger dot rounded-circle me-1"></div>
@@ -322,7 +322,7 @@
 											</div>
 											<div class="col-auto ms--2">
 												<h4 class="h6 mb-0">
-													<a href="#">Neil Sims</a>
+													<a href="#">Bahlil Lahadalia</a>
 												</h4>
 												<div class="d-flex align-items-center">
 													<div class="bg-danger dot rounded-circle me-1"></div>

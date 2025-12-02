@@ -30,6 +30,7 @@ class UserController extends Controller
 
         $data['name']     = $request->name;
         $data['email']    = $request->email;
+        $data['role']    = $request->role;
         $data['password'] = Hash::make($request->password);
 
         // Logika Upload Foto
@@ -61,7 +62,7 @@ class UserController extends Controller
 
         $dataUser->name = $request->name;
         $dataUser->email = $request->email;
-        
+
         // Update password hanya jika diisi
         if($request->filled('password')){
              $dataUser->password = Hash::make($request->password);
@@ -73,7 +74,7 @@ class UserController extends Controller
             if ($dataUser->profile_picture && Storage::disk('public')->exists($dataUser->profile_picture)) {
                 Storage::disk('public')->delete($dataUser->profile_picture);
             }
-            
+
             // 2. Simpan foto baru
             $path = $request->file('profile_picture')->store('profile_pictures', 'public');
             $dataUser->profile_picture = $path;

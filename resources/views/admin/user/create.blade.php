@@ -63,12 +63,24 @@
                                     <input type="text" id="name" name="name" class="form-control"
                                         value="{{ old('name') }}">
                                 </div>
-                                
+
                                 <!--Profile Picture -->
                                 <div class="mb-3">
                                 <label for="profile_picture" class="form-label">Profile Picture</label>
                                 <input type="file" id="profile_picture" class="form-control" name="profile_picture">
                                 </div>
+
+                                <!--Role -->
+                                <div class="mb-3">
+                                        <label for="role" class="form-label">Role</label>
+                                        <select id="role" name="role" class="form-select" name="role"
+                                            value="{{ old('role') }}">
+                                            <option value="">-- Pilih --</option>
+                                            <option value="Admin">Admin</option>
+                                            <option value="Pelanggan">Pelanggan</option>
+                                            <option value="Mitra">Mitra</option>
+                                        </select>
+                                    </div>
 
                                 <!-- Email -->
                                 <div class="mb-3">

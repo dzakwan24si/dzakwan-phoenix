@@ -34,7 +34,7 @@
         <div class="col-12 mb-4">
             <div class="card border-0 shadow mb-4">
                 <div class="card-body">
-                    
+
                     {{-- Alert dipindah ke sini (Body Card) agar rapi --}}
                     @if (session('success'))
                         <div class="alert alert-info">
@@ -50,6 +50,7 @@
                                     <th class="border-0">Nama Lengkap</th>
                                     <th class="border-0">Email</th>
                                     <th class="border-0">Password</th>
+                                    <th class="border-0">Role</th>
                                     <th class="border-0 rounded-end">Action</th>
                                 </tr>
                             </thead>
@@ -65,16 +66,17 @@
                                                 <span class="text-muted">No Img</span>
                                             @endif
                                         </td>
-                                        
+
                                         {{-- Kolom Data --}}
                                         <td>{{ $item->name }}</td>
                                         <td>{{ $item->email }}</td>
                                         <td>{{ Str::limit($item->password, 10) }}</td> {{-- Password dipotong biar tabel gak lebar --}}
+                                        <td>{{ $item->role }}</td>
 
                                         {{-- Kolom Action --}}
                                         <td>
                                             {{-- Tombol Edit --}}
-                                            <a href="{{ route('user.edit', $item->user_id) }}" class="btn btn-info btn-sm">
+                                            <a href="{{ route('user.edit', $item->id) }}" class="btn btn-info btn-sm">
                                                 <svg class="icon icon-xs me-2" data-slot="icon" fill="none"
                                                     stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24"
                                                     xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -86,7 +88,7 @@
                                             </a>
 
                                             {{-- Tombol Hapus --}}
-                                            <form action="{{ route('user.destroy', $item->user_id) }}" method="POST"
+                                            <form action="{{ route('user.destroy', $item->id) }}" method="POST"
                                                 style="display:inline">
                                                 @csrf
                                                 @method('DELETE')
